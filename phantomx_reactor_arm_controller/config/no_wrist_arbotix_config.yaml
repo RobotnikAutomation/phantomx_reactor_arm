@@ -1,0 +1,18 @@
+# Config file for PhantomX Reactor
+port: /dev/ttyUSB0
+rate: 20
+joints: {
+    arm_1_joint: {id: 1, max_speed: 75.0},
+    arm_2_joint: {id: 2, max_speed: 75.0},
+    arm_2_1_joint: {id: 3, max_speed: 75.0},
+    arm_3_joint: {id: 4, max_speed: 75.0},
+    arm_3_1_joint: {id: 5, max_speed: 75.0},
+    arm_4_joint: {id: 6, max_speed: 75.0},
+    arm_gripper_joint: {id: 8, max_speed: 125.0, range: 180, min_angle: -90.0, max_angle: 90.0},
+}
+
+# Be carefull with dependency of j2-j3 and j4-j5
+# controllers: {
+#    arm_controller: {type: follow_controller, joints: [arm_1_joint, arm_2_joint, arm_3_joint, arm_4_joint, arm_5_joint, arm_6_joint, arm_8_joint]}
+# }
+#   arm_8_joint: {id: 8, max_speed: 125.0, range: 180.0, min_angle: -90.0, max_angle: 90.0},

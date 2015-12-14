@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package>
+  <name>phantomx_reactor_arm_controller</name>
+  <version>0.1.0</version>
+  <description>The phantomx_reactor_arm_controller package</description>
+
+  <maintainer email="rnavarro@robotnik.es">Román Navarro</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>arbotix_python</run_depend> 
+
+  <export></export>
+</package>

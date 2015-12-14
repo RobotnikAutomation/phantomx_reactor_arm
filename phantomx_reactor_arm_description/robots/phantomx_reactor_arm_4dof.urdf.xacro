@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot name="robospect" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<!-- Import Robospect Base -->
+	<xacro:include filename="$(find phantomx_reactor_arm_description)/urdf/phantomx_reactor_4dof.urdf.xacro" />
+
+	<link name="base_footprint">
+	</link>
+
+	<joint name="base_footprint_joint" type="fixed">
+	 <origin xyz="0 0 0" rpy="0 0 0" />
+	 <parent link="base_footprint"/>
+	 <child link="base_link" />
+	</joint>
+
+	<link name="base_link">
+	</link>
+	
+	<xacro:phantomx_reactor_4dof name="arm" parent="base_link">
+		<origin xyz="0 0 0" rpy="0 0 0" />
+	</xacro:phantomx_reactor_4dof>
+	
+</robot>
