@@ -12,7 +12,7 @@
   <!-- Combine joint values -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
 
-  <!-- Show in Rviz   args="-d $(find crom_description)/launch/crom.rviz"-->
+  <!-- Show in Rviz -->
   <node name="rviz" pkg="rviz" type="rviz" />  
 
 </launch>
