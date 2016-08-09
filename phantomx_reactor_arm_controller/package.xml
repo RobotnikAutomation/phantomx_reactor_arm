@@ -17,6 +17,7 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <run_depend>arbotix_python</run_depend> 
+  <run_depend>rospy</run_depend> 
 
   <export></export>
 </package>
