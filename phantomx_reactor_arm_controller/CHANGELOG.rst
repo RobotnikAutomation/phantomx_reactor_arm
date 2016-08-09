@@ -7,6 +7,12 @@ Forthcoming
 * Adding missing dependencies
 * Adding missing dependencies
 * Adding missing dependencies
+* Adding missing dependencies
+* Contributors: AliquesTomas
+
+* Adding missing dependencies
+* Adding missing dependencies
+* Adding missing dependencies
 * Contributors: AliquesTomas
 
 * Adding missing dependencies

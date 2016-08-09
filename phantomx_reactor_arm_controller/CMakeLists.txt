@@ -6,3 +6,5 @@ find_package(catkin REQUIRED rospy arbotix_python)
 catkin_python_setup()
 catkin_package()
 
+catkin_install_python(PROGRAMS src/phantomx_reactor.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
