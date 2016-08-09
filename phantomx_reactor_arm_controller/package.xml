@@ -16,6 +16,7 @@
   <url type="bugtracker">https://github.com/RobotnikAutomation/phantomx_reactor_arm/issues</url>
 
   <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>rospy</build_depend>
   <run_depend>arbotix_python</run_depend> 
   <run_depend>rospy</run_depend> 
 
