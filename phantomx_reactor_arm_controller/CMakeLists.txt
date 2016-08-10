@@ -6,14 +6,14 @@ find_package(catkin REQUIRED COMPONENTS rospy arbotix_python)
 catkin_python_setup()
 catkin_package()
 
-include_directories(
-  ${catkin_INCLUDE_DIRS}
-)
+#include_directories(
+#  ${catkin_INCLUDE_DIRS}
+#)
 
-link_directories(~/catkin_ws/src/phantomx_reactor_arm/phantomx_reactor_arm_controller)
+#link_directories(~/catkin_ws/src/phantomx_reactor_arm/phantomx_reactor_arm_controller)
 
 install(DIRECTORY src DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
-catkin_install_python(PROGRAMS src/phantomx_reactor.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+#catkin_install_python(PROGRAMS src/phantomx_reactor.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #catkin_install_python(PROGRAMS setup.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
