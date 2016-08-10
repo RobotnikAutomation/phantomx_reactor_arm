@@ -12,7 +12,6 @@ include_directories(
 
 link_directories(~/catkin_ws/src/phantomx_reactor_arm/phantomx_reactor_arm_controller)
 
-#catkin_install_python(PROGRAMS src/phantomx_reactor.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+catkin_install_python(PROGRAMS src/phantomx_reactor.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #catkin_install_python(PROGRAMS setup.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-add_executable(phantomx_reactor.py src/phantomx_reactor.py)
 
