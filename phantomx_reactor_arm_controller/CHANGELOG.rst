@@ -2,8 +2,8 @@
 Changelog for package phantomx_reactor_arm_controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.4 (2016-09-05)
+------------------
 * modified 4dof launch file
 * Contributors: carlos3dx
 
