@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <node name="phantomx_reactor_arbotix" pkg="arbotix_python" type="arbotix_driver" output="screen">
+  <node name="arbotix" pkg="arbotix_python" type="arbotix_driver" output="screen">
     <rosparam file="$(find phantomx_reactor_arm_controller)/config/no_wrist_arbotix_config.yaml" command="load" />
   </node>
   <node name="phantomx_reactor_controller" pkg="phantomx_reactor_arm_controller" type="phantomx_reactor.py" output="screen"/>
