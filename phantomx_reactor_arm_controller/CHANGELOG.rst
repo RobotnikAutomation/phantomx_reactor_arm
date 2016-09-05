@@ -2,6 +2,11 @@
 Changelog for package phantomx_reactor_arm_controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* modified 4dof launch file
+* Contributors: carlos3dx
+
 0.1.3 (2016-08-10)
 ------------------
 * Corrected the Cmakelists and Setup.py files
