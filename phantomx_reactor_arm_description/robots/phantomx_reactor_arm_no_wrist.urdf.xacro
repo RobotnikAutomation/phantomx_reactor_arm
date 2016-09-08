@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot name="phantomx_reactor_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<!-- Import URDF xacro model -->
+	<xacro:include filename="$(find phantomx_reactor_arm_description)/urdf/phantomx_reactor_no_wrist.urdf.xacro" />
+
+	<link name="base_footprint">
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.001 0.001 0.001" />
+			</geometry>
+		</visual>
+	</link>
+	<xacro:phantomx_reactor_no_wrist prefix="arm_" parent="base_footprint">
+		<origin xyz="0 0 0" rpy="0 0 0" />
+	</xacro:phantomx_reactor_no_wrist>
+	
+</robot>
