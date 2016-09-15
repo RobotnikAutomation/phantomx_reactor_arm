@@ -1,0 +1,8 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: reactor_description
+    relative_path: robots/reactor_description.URDF
+  SRDF:
+    relative_path: config/reactor_description.srdf
+  CONFIG:
+    generated_timestamp: 1469642504
