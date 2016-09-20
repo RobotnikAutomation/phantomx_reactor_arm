@@ -1,4 +1,7 @@
 <?xml version="1.0"?>
+<!-- Phantomx Reactor Arm URDF -->
+<!-- Original from https://github.com/a-price/reactor_description/ -->
+<!-- Modified by Samir Parikh (sdparikh at gmail dot com) for movable gripper functionality -->
 <robot
 name="phantomx_reactor_arm_description"
 xmlns:xacro="http://ros.org/wiki/xacro">
