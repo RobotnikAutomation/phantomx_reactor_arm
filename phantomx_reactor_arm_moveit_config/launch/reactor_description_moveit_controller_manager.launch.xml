@@ -3,6 +3,6 @@
  <arg name="moveit_controller_manager" default="moveit_simple_controller_manager/MoveItSimpleControllerManager" />
  <param name="moveit_controller_manager" value="$(arg moveit_controller_manager)"/>
  <!-- load controller_list -->
- <rosparam file="$(find reactor_moveit_config)/config/controllers.yaml"/>
+ <rosparam file="$(find phantomx_reactor_arm_moveit_config)/config/controllers.yaml"/>
 
 </launch>

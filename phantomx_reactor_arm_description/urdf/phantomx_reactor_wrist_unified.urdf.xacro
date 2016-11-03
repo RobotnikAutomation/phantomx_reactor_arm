@@ -46,17 +46,18 @@
 			</collision>
 		</link>
 		
-		<!-- SHOULDER YAW -->
-		<joint name="${prefix}1_joint" type="revolute">
+		<!-- SHOULDER PAN -->
+		<joint name="${prefix}shoulder_yaw" type="revolute">
 			<origin xyz="0 0 0.081" rpy="0 0 0" />
+			<!--origin xyz="0 0 0.081" rpy="0 0 0" /-->
 			<parent link="${prefix}base_link" />
-			<child link="${prefix}1_link" />
+			<child link="${prefix}shoulder_link" />
 			<axis xyz="0 0 1" />
 			<limit effort="1.5" velocity="6.178465545" lower="-3.141593" upper="3.141593" />
 			<!--limit effort="1.5" velocity="6.178465545" lower="-2.57079632679" upper="2.57079632679" /-->
 		</joint>
 		
-		<link name="${prefix}1_link">
+		<link name="${prefix}shoulder_link">
 			<inertial>
 			  <origin xyz="5.5296E-07 0.00048339 0.0026355" rpy="0 0 0" />
 			  <mass value="0.069055" />
@@ -80,16 +81,16 @@
 			</collision>
 		</link>
 		
-		<!-- SHOULDER PITCH -->
-		<joint name="${prefix}2_joint" type="revolute">
+		<!-- SHOULDER TILT -->
+		<joint name="${prefix}shoulder_pitch" type="revolute">
 			<origin xyz="0 0 0.0265" rpy="${PI/2} 0 0" />
-			<parent link="${prefix}1_link" />
-			<child link="${prefix}2_link" />
+			<parent link="${prefix}shoulder_link" />
+			<child link="${prefix}bicep_link" />
 			<axis xyz="0 0 -1" />
 			<limit effort="3.0" velocity="6.178465545" lower="${joint_2_lower_limit}" upper="${joint_2_upper_limit}" />
 		</joint>
 		
-		<link name="${prefix}2_link">
+		<link name="${prefix}bicep_link">
 			<inertial>
 			  <origin xyz="-0.079312 0.00175 0.0073486" rpy="-${PI/2} 0 -${PI/2}" />
 			  <mass value="0.29331" />
@@ -153,8 +154,8 @@
 		</collision>
 	  </link>
 	  
-	  <!-- WRIST PITCH -->
-	  <joint name="${prefix}4_joint" type="revolute">
+	  <!-- WRIST TILT -->
+	  <joint name="${prefix}4_joint"	type="revolute">
 		<origin xyz="0.1535 0 0" rpy="0 0 0" />
 		<parent link="${prefix}3_link" />
 		<child link="${prefix}4_link" />
@@ -187,7 +188,7 @@
 		</collision>
 	  </link>
 	  
-	  <!-- WRIST ROLL -->
+	  <!-- WRIST ROTATION -->
 	  <joint name="${prefix}5_joint" type="revolute">
 		<origin xyz="0.071 0.00175 0" rpy="0 0 0" />
 		<parent link="${prefix}4_link" />
@@ -223,7 +224,7 @@
 	  </link>
 	  
 	  <!-- GRIPPER -->
-	  <!--joint name="gripper_joint" type="fixed">
+	  <!--joint name="${prefix}gripper_joint" type="fixed">
 		<origin xyz="0.04789 0 0" rpy="0 0 0" />
 		<parent link="${prefix}5_link" />
 		<child link="${prefix}gripper_link" />
@@ -254,16 +255,16 @@
 		</collision>
 	  </link-->
 	  
-	  <joint name="${prefix}guide_joint" type="fixed"> 
-		<origin xyz="0.05 0.00 0"   rpy="${PI/2} 0 0" /> 
+	  <joint name="guide_joint" type="fixed"> 
+		<origin xyz="0.05 0.00 0"   rpy="0 0 0" /> 
 		<parent link="${prefix}5_link" /> 
-		<child link="${prefix}gripper_link_guide" /> 
+		<child link="gripper_link_guide" /> 
 		<axis xyz="0 0 1" /> 
 		<limit effort="1.5" velocity="6.178465545" lower="0" upper="1.57"/> 
 	</joint> 
 
 	  
-	<link name="${prefix}gripper_link_guide"> 
+	<link name="gripper_link_guide"> 
 		<inertial>
 			<origin xyz="0.0091884 -7.3309E-13 -3.4513E-05" rpy="0 0 0" />
 			<mass value="0.02487" />
@@ -286,16 +287,16 @@
 		</collision> 
 	</link> 
 	
-	<joint name="${prefix}gripper_joint" type="prismatic"> 
+	<joint name="gripper_joint" type="prismatic"> 
 		<origin xyz="0.0202 0.030 0"   rpy="0 0 0" /> 
-		<parent link="${prefix}gripper_link_guide" /> 
-		<child link="${prefix}gripper_link_right" /> 
+		<parent link="gripper_link_guide" /> 
+		<child link="gripper_link_right" /> 
 		<axis xyz="0 -0.00900 0" /> 
 		<limit effort="1.5" velocity="6.178465545" lower="0" upper="1.9" /> 
 	</joint> 
 
 	
-	<link name="${prefix}gripper_link_right"> 
+	<link name="gripper_link_right"> 
 		<visual>  
 			<origin xyz="0 0.00 0" rpy="-1.57 -1.57 0" />   
 			<geometry> 
@@ -313,16 +314,16 @@
 		</collision> 
 	</link> 
 	
-	<joint name="${prefix}gripper_joint_left" type="prismatic"> 
+	<joint name="gripper_joint_left" type="prismatic"> 
 		<origin xyz="0.0202 -0.030 0" rpy="0 0 0" /> 
-		<parent link="${prefix}gripper_link_guide" /> 
-		<child link="${prefix}gripper_link_left" /> 
+		<parent link="gripper_link_guide" /> 
+		<child link="gripper_link_left" /> 
 		<axis xyz="0 -0.00900 0" /> 
 		<limit effort="1.5" velocity="6.178465545"  lower="-1.9" upper="0" /> 
-		<mimic joint="${prefix}gripper_joint" multiplier="-1.0"/> 
+		<mimic joint="gripper_joint" multiplier="-1.0"/> 
 	</joint> 
 
-	<link name="${prefix}gripper_link_left"> 
+	<link name="gripper_link_left"> 
 		<visual>   
 			<origin xyz="0 0 0" rpy="1.57 1.57 0" />   
 			<geometry> 
@@ -340,6 +341,9 @@
 		</collision> 
 	</link>	 
 
+	
+
+	
 	  	  
 	</xacro:macro>
 

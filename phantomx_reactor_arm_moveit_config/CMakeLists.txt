@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(reactor_moveit_config)
+project(phantomx_reactor_arm_moveit_config)
 
 find_package(catkin REQUIRED)
 
