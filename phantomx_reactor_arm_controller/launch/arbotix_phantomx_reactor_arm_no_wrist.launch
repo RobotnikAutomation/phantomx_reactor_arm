@@ -1,0 +1,20 @@
+<?xml version="1.0"?>	
+<launch>
+	<param name="robot_description" command="$(find xacro)/xacro.py '$(find phantomx_reactor_arm_description)/robots/phantomx_reactor_arm_no_wrist.urdf.xacro'" />
+	
+	<node name="arbotix" pkg="arbotix_python" type="arbotix_driver" output="screen">
+		<rosparam file="$(find phantomx_reactor_arm_controller)/config/arbotix_config_phantomx_no_wrist.yaml" command="load" />
+	</node>
+	
+	<node name="phantomx_reactor_controller" pkg="phantomx_reactor_arm_controller" type="phantomx_reactor_parallel_motor_joints.py" output="screen"/>
+  
+	<!--node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+		<param name="use_gui" value="TRUE"/>
+	</node-->
+	
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+
+	<!-- Show in Rviz   -->
+	<node name="rviz" pkg="rviz" type="rviz"/> 
+
+</launch>

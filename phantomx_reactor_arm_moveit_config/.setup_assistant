@@ -1,0 +1,8 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: phantomx_reactor_arm_description
+    relative_path: urdf/phantomx_reactor_wrist_gripper.urdf.xacro
+  SRDF:
+    relative_path: config/reactor_description.srdf
+  CONFIG:
+    generated_timestamp: 1469642504

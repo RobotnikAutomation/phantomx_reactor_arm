@@ -1,17 +1,15 @@
 #!/usr/bin/env python
+
 """
-	@file phantomx_reactor.py
+	@file phantomx_reactor_parallel_motor_joints.py
 	
 	
 	Subscribes:
-		- 
+		- joint_command
 		
 	Publishes:
-		- 
+		- joint_states
 		
-	Actions:
-		
-	
 	@author: Robotnik Automation
 	
 	Software License Agreement (BSD License)
@@ -51,19 +49,19 @@ class PhantomXReactor:
 		
 		try:
 			self.name = rospy.get_param('~name', default = 'phantomx_reactor')
-			self.j1 = rospy.get_param('~j1', default = 'j1')
-			self.j2 = rospy.get_param('~j2', default = 'j2')
-			self.j3 = rospy.get_param('~j3', default = 'j3')
-			self.j4 = rospy.get_param('~j4', default = 'j4')
-			self.j5 = rospy.get_param('~j5', default = 'j5')
-			self.j6 = rospy.get_param('~j6', default = 'gripper')
+			self.j1 = rospy.get_param('~j1', default = 'arm_1_joint')
+			self.j2 = rospy.get_param('~j2', default = 'arm_2_joint')
+			self.j3 = rospy.get_param('~j3', default = 'arm_3_joint')
+			self.j4 = rospy.get_param('~j4', default = 'arm_4_joint')
+			self.j5 = rospy.get_param('~j5', default = 'arm_5_joint')
+			self.j6 = rospy.get_param('~j6', default = 'arm_gripper_joint')
 			self.controller_1 = rospy.get_param('~controller_1', default = '/arm_1_joint/command')
 			self.controller_2 = rospy.get_param('~controller_2', default = '/arm_2_joint/command')
 			self.controller_3 = rospy.get_param('~controller_3', default = '/arm_2_1_joint/command')
 			self.controller_4 = rospy.get_param('~controller_4', default = '/arm_3_joint/command')
 			self.controller_5 = rospy.get_param('~controller_5', default = '/arm_3_1_joint/command')
 			self.controller_6 = rospy.get_param('~controller_6', default = '/arm_4_joint/command')
-			self.controller_7 = rospy.get_param('~controller_7', default = '/arm_5_jointr/command') # optional
+			self.controller_7 = rospy.get_param('~controller_7', default = '/arm_5_joint/command') # optional
 			self.controller_8 = rospy.get_param('~controller_8', default = '/arm_gripper_joint/command')
 			
 			# j2 has to controllers syncronized (2,3)
@@ -77,6 +75,16 @@ class PhantomXReactor:
 			self.controller_7_publisher = rospy.Publisher(self.controller_7, Float64, queue_size = 10)
 			self.controller_8_publisher = rospy.Publisher(self.controller_8, Float64, queue_size = 10)
 			
+			
+			"""
+			self.joint_1_command = rospy.Subscriber('/'+self.j1+"/command", Float64, self.joint1CommandCb)
+			self.joint_2_command = rospy.Subscriber('/'+self.j2+"/command", Float64, self.joint2CommandCb)
+			self.joint_3_command = rospy.Subscriber('/'+self.j3+"/command", Float64, self.joint3CommandCb)
+			self.joint_4_command = rospy.Subscriber('/'+self.j4+"/command", Float64, self.joint4CommandCb)
+			self.joint_5_command = rospy.Subscriber('/'+self.j5+"/command", Float64, self.joint5CommandCb)
+			self.joint_6_command = rospy.Subscriber('/'+self.j6+"/command", Float64, self.joint6CommandCb)
+			"""
+			
 			self.joint_command = rospy.Subscriber('~joint_command', JointState, self.jointCommandCb)
 			
 			self.desired_freq = rospy.get_param('~desired_freq', default = 10.0)
@@ -86,7 +94,6 @@ class PhantomXReactor:
 			exit()
 
 		
-	
 	def jointCommandCb(self, msg):
 		"""
 			Receives joint command and send it to the controller
@@ -136,7 +143,7 @@ class PhantomXReactor:
 			
 	def start(self):
 		"""
-			Starts the action server and runs spin
+			Starts the control loop and runs spin
 		"""	
 		try:
 			self.controlLoop()
@@ -150,7 +157,6 @@ def main():
 		
 	phantomx_reactor_node = PhantomXReactor()
 	
-
 	phantomx_reactor_node.start()
 	
 
