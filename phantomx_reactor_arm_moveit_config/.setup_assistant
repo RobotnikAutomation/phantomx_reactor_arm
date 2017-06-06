@@ -5,4 +5,6 @@ moveit_setup_assistant_config:
   SRDF:
     relative_path: config/reactor_description.srdf
   CONFIG:
-    generated_timestamp: 1469642504
+    author_name: Roman Navarro
+    author_email: rnavarro@robotnik.es
+    generated_timestamp: 1496742375
