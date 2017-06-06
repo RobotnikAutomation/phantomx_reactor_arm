@@ -80,6 +80,20 @@ roslaunch phantomx_reactor_arm_controller arbotix_phantomx_reactor_arm_wrist.lau
 ```
  roslaunch phantomx_reactor_arm_controller arbotix_phantomx_reactor_arm_no_wrist.launch
 ```
+#### Dynamixel Controller
+
+* Run the controller
+```
+roslaunch phantomx_reactor_arm_controller dynamixel_phantomx_reactor_arm_wrist.launch 
+```
+* Load description and run the robot state publisher
+```
+roslaunch phantomx_reactor_arm_controller dynamixel_phantomx_reactor_arm_wrist_description.launch 
+```
+* Run Moveit plugin for RVIZ
+```
+roslaunch phantomx_reactor_arm_moveit_config demo.launch
+```
 
 ### Commanding the controller 
 
@@ -100,4 +114,13 @@ position: [0, 0.0, 0.0, 0.0, 0.0, 0.0]
 velocity: [0, 0.0, 0.0, 0.0, 0.0, 0.0]
 effort: [0, 0.0, 0.0, 0.0, 0.0, 0.0]" 
 ```
+#### Dynamixel Controller
 
+```
+rostopic pub /shoulder_yaw/command std_msgs/Float64 "data: 0.0"
+rostopic pub /shoulder_pitch/command std_msgs/Float64 "data: 0.0"
+rostopic pub /elbow_pitch/command std_msgs/Float64 "data: 0.0"
+rostopic pub /wrist_yaw/command std_msgs/Float64 "data: 0.0"
+rostopic pub /wrist_pitch/command std_msgs/Float64 "data: 0.0"
+rostopic pub /gripper_joint/command std_msgs/Float64 "data: 0.0"
+```
