@@ -12,8 +12,8 @@
 			</geometry>
 		</visual>
 	</link>
-	<xacro:phantomx_reactor_wrist prefix="arm_" parent="base_footprint">
+	<xacro:phantomx_reactor_wrist prefix="" parent="base_footprint">
 		<origin xyz="0 0 0" rpy="0 0 0" />
-	</xacro:phantomx_reactor_wrist		>
+	</xacro:phantomx_reactor_wrist>
 	
 </robot>
