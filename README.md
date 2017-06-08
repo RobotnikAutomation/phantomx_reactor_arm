@@ -47,12 +47,12 @@ git clone https://github.com/RobotnikAutomation/widowx_reactor_arm.git
 ```
 ### Creating the udev rule for the device
 
-#### For the Arbotix-M
+#### For the Arbotix-M and USB2Dynamixel
 
-In the widowx_arm_controller/config folder there's the file 57-reactor_arbotix.rules. You have to copy it into the /etc/udev/rules.d folder.
+In the phantomx_reactor_arm_controller/config folder there's the file 57-reactor_arbotix.rules/reactor_usb2dynamixel.rules. You have to copy it into the /etc/udev/rules.d folder.
 
 ```
-sudo cp 58-widowx.rules /etc/udev/rules.d
+sudo cp 57-reactor_arbotix.rules /etc/udev/rules.d
 ```
 
 You have to set the attribute ATTRS{serial} with the current serial number of the ftdi device
@@ -80,7 +80,7 @@ roslaunch phantomx_reactor_arm_controller arbotix_phantomx_reactor_arm_wrist.lau
 ```
  roslaunch phantomx_reactor_arm_controller arbotix_phantomx_reactor_arm_no_wrist.launch
 ```
-#### Dynamixel Controller
+#### USB2Dynamixel Controller
 
 * Run the controller
 ```
@@ -88,11 +88,18 @@ roslaunch phantomx_reactor_arm_controller dynamixel_phantomx_reactor_arm_wrist.l
 ```
 * Load description and run the robot state publisher
 ```
-roslaunch phantomx_reactor_arm_controller dynamixel_phantomx_reactor_arm_wrist_description.launch 
+roslaunch phantomx_reactor_arm_description phantomx_reactor_wrist_load_description.launch
 ```
 * Run Moveit plugin for RVIZ
+Moveit only works (for now) for the USB2Dynamixel option.
+If you run the moveit demo, the previous launch with the description is not necessary.
+Runnig demo with fake controllers (no real arm needed).
 ```
 roslaunch phantomx_reactor_arm_moveit_config demo.launch
+```
+Running demo with the real controllers
+```
+roslaunch phantomx_reactor_arm_moveit_config demo_real.launch
 ```
 
 ### Commanding the controller 
@@ -105,22 +112,22 @@ roslaunch phantomx_reactor_arm_moveit_config demo.launch
 Use the command topic subscribed by the node phantomx_reactor_parallel_motor_joints.py
 
 ```
-rostopic pub /phantomx_reactor_controller/joint_coand sensor_msgs/JointState "header:
-  seq: 0
-  stamp: {secs: 0, nsecs: 0}
-  frame_id: ''
-name: ['arm_1_joint', 'arm_2_joint', 'arm_3_joint', 'arm_4_joint', 'arm_5_joint', 'arm_gripper_joint']
-position: [0, 0.0, 0.0, 0.0, 0.0, 0.0]
-velocity: [0, 0.0, 0.0, 0.0, 0.0, 0.0]
-effort: [0, 0.0, 0.0, 0.0, 0.0, 0.0]" 
+rostopic pub /phantomx_reactor_controller/shoulder_yaw_joint/command std_msgs/Float64 "data: 0.0"
+rostopic pub /phantomx_reactor_controller/shoulder_pitch_joint/command std_msgs/Float64 "data: 0.0"
+rostopic pub /phantomx_reactor_controller/elbow_pitch_joint/command std_msgs/Float64 "data: 0.0"
+rostopic pub /phantomx_reactor_controller/wrist_yaw_joint/command std_msgs/Float64 "data: 0.0"
+rostopic pub /phantomx_reactor_controller/wrist_pitch_joint/command std_msgs/Float64 "data: 0.0"
+rostopic pub /phantomx_reactor_controller/gripper_revolute_joint/command std_msgs/Float64 "data: 0.0"
+rostopic pub /phantomx_reactor_controller/gripper_prismatic_joint/command std_msgs/Float64 "data: 0.0"
 ```
-#### Dynamixel Controller
+#### USB2Dynamixel Controller
 
 ```
-rostopic pub /shoulder_yaw/command std_msgs/Float64 "data: 0.0"
-rostopic pub /shoulder_pitch/command std_msgs/Float64 "data: 0.0"
-rostopic pub /elbow_pitch/command std_msgs/Float64 "data: 0.0"
-rostopic pub /wrist_yaw/command std_msgs/Float64 "data: 0.0"
-rostopic pub /wrist_pitch/command std_msgs/Float64 "data: 0.0"
-rostopic pub /gripper_joint/command std_msgs/Float64 "data: 0.0"
+rostopic pub /shoulder_yaw_joint/command std_msgs/Float64 "data: 0.0"
+rostopic pub /shoulder_pitch_joint/command std_msgs/Float64 "data: 0.0"
+rostopic pub /elbow_pitch_joint/command std_msgs/Float64 "data: 0.0"
+rostopic pub /wrist_yaw_joint/command std_msgs/Float64 "data: 0.0"
+rostopic pub /wrist_pitch_joint/command std_msgs/Float64 "data: 0.0"
+rostopic pub /gripper_revolute_joint/command std_msgs/Float64 "data: 0.0"
+rostopic pub /gripper_prismatic_joint/command std_msgs/Float64 "data: 0.0"
 ```
