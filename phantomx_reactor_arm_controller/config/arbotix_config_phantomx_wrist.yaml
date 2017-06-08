@@ -2,22 +2,17 @@
 port: /dev/ttyUSB_REACTOR
 rate: 100
 joints: {
-    arm_1_joint: {id: 1, max_speed: 75.0},
-    arm_2_joint: {id: 2, max_speed: 75.0},
-    arm_2_1_joint: {id: 3, max_speed: 75.0},
-    arm_3_joint: {id: 4, max_speed: 75.0},
-    arm_3_1_joint: {id: 5, max_speed: 75.0},
-    arm_4_joint: {id: 6, max_speed: 75.0},
-    arm_5_joint: {id: 7, max_speed: 75.0},
-    arm_gripper_joint: {id: 8, max_speed: 114.0, range: 180, min_angle: -90.0, max_angle: 0},
+    shoulder_yaw_joint: {id: 1, max_speed: 50.0},
+    shoulder_pitch_joint: {id: 2, max_speed: 50.0},
+    shoulder_pitch_mimic_joint: {id: 3, max_speed: 50.0},
+    elbow_pitch_joint: {id: 5, max_speed: 50.0},
+    elbow_pitch_mimic_joint: {id: 4, max_speed: 50.0},
+    wrist_pitch_joint: {id: 6, max_speed: 50.0, invert: true},
+    wrist_roll_joint: {id: 7, max_speed: 50.0},
+    gripper_revolute_joint: {id: 8, max_speed: 100.0, range: 180, min_angle: -90.0, max_angle: 0},
 }
 
 #
 # Be carefull with dependency of j2-j3 and j4-j5!!!
 # Use the node phantomx_reactor_parallel_motor_joints.py for that purpose
 #
-
-#controllers: {
-#    arm_controller: {type: follow_controller, joints: [shoulder_yaw, shoulder_pitch, elbow_pitch, wrist_pitch, wrist_roll, gripper_joint], action_name: arm_controller/follow_joint_trajectory, onboard: False}
-#}
-#   arm_8_joint: {id: 8, max_speed: 125.0, range: 180.0, min_angle: -90.0, max_angle: 90.0},

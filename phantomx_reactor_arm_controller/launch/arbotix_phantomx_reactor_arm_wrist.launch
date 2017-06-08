@@ -9,9 +9,15 @@
 		<rosparam file="$(find phantomx_reactor_arm_controller)/config/arbotix_config_phantomx_wrist.yaml" command="load" />
 	</node>
 	
-	<!-- This node coordinates the motors from the parallel joints -->
+	<!-- This node coordinates the motors with the parallel/mimic joints -->
 	<node name="phantomx_reactor_controller" pkg="phantomx_reactor_arm_controller" type="phantomx_reactor_parallel_motor_joints.py" output="screen"/>
   
+    <!-- Start the node to publish and command the parallel gripper -->
+	<node name="phantomx_reactor_parallel_gripper" pkg="phantomx_reactor_arm_controller" type="phantomx_reactor_gripper.py" output="screen" >
+		<param name="rate" value="15"/>
+		<param name="prismatic_command" value="/phantomx_reactor_controller/gripper_prismatic_joint/command"/>
+	</node>
+	
 	<!--node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/-->
 
 	<!-- Show in Rviz   -->

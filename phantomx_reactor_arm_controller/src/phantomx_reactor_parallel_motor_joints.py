@@ -49,20 +49,20 @@ class PhantomXReactor:
 		
 		try:
 			self.name = rospy.get_param('~name', default = 'phantomx_reactor')
-			self.j1 = rospy.get_param('~j1', default = 'arm_1_joint')
-			self.j2 = rospy.get_param('~j2', default = 'arm_2_joint')
-			self.j3 = rospy.get_param('~j3', default = 'arm_3_joint')
-			self.j4 = rospy.get_param('~j4', default = 'arm_4_joint')
-			self.j5 = rospy.get_param('~j5', default = 'arm_5_joint')
-			self.j6 = rospy.get_param('~j6', default = 'arm_gripper_joint')
-			self.controller_1 = rospy.get_param('~controller_1', default = '/arm_1_joint/command')
-			self.controller_2 = rospy.get_param('~controller_2', default = '/arm_2_joint/command')
-			self.controller_3 = rospy.get_param('~controller_3', default = '/arm_2_1_joint/command')
-			self.controller_4 = rospy.get_param('~controller_4', default = '/arm_3_joint/command')
-			self.controller_5 = rospy.get_param('~controller_5', default = '/arm_3_1_joint/command')
-			self.controller_6 = rospy.get_param('~controller_6', default = '/arm_4_joint/command')
-			self.controller_7 = rospy.get_param('~controller_7', default = '/arm_5_joint/command') # optional
-			self.controller_8 = rospy.get_param('~controller_8', default = '/arm_gripper_joint/command')
+			self.j1 = rospy.get_param('~j1', default = 'shoulder_yaw_joint')
+			self.j2 = rospy.get_param('~j2', default = 'shoulder_pitch_joint')
+			self.j3 = rospy.get_param('~j3', default = 'elbow_pitch_joint')
+			self.j4 = rospy.get_param('~j4', default = 'wrist_pitch_joint')
+			self.j5 = rospy.get_param('~j5', default = 'wrist_roll_joint')
+			self.j6 = rospy.get_param('~j6', default = 'gripper_revolute_joint')
+			self.controller_1 = rospy.get_param('~controller_1', default = '/shoulder_yaw_joint/command')
+			self.controller_2 = rospy.get_param('~controller_2', default = '/shoulder_pitch_joint/command')
+			self.controller_3 = rospy.get_param('~controller_3', default = '/shoulder_pitch_mimic_joint/command')
+			self.controller_4 = rospy.get_param('~controller_4', default = '/elbow_pitch_joint/command')
+			self.controller_5 = rospy.get_param('~controller_5', default = '/elbow_pitch_mimic_joint/command')
+			self.controller_6 = rospy.get_param('~controller_6', default = '/wrist_pitch_joint/command')
+			self.controller_7 = rospy.get_param('~controller_7', default = '/wrist_roll_joint/command') # optional
+			self.controller_8 = rospy.get_param('~controller_8', default = '/gripper_revolute_joint/command')
 			
 			# j2 has to controllers syncronized (2,3)
 			# j3 has to controllers syncronized (4,5)
@@ -75,15 +75,14 @@ class PhantomXReactor:
 			self.controller_7_publisher = rospy.Publisher(self.controller_7, Float64, queue_size = 10)
 			self.controller_8_publisher = rospy.Publisher(self.controller_8, Float64, queue_size = 10)
 			
+			# Alternative command topics
+			self.joint_1_command = rospy.Subscriber('~'+self.j1+"/command", Float64, self.joint1CommandCb)
+			self.joint_2_command = rospy.Subscriber('~'+self.j2+"/command", Float64, self.joint2CommandCb)
+			self.joint_3_command = rospy.Subscriber('~'+self.j3+"/command", Float64, self.joint3CommandCb)
+			self.joint_4_command = rospy.Subscriber('~'+self.j4+"/command", Float64, self.joint4CommandCb)
+			self.joint_5_command = rospy.Subscriber('~'+self.j5+"/command", Float64, self.joint5CommandCb)
+			self.joint_6_command = rospy.Subscriber('~'+self.j6+"/command", Float64, self.joint6CommandCb)
 			
-			"""
-			self.joint_1_command = rospy.Subscriber('/'+self.j1+"/command", Float64, self.joint1CommandCb)
-			self.joint_2_command = rospy.Subscriber('/'+self.j2+"/command", Float64, self.joint2CommandCb)
-			self.joint_3_command = rospy.Subscriber('/'+self.j3+"/command", Float64, self.joint3CommandCb)
-			self.joint_4_command = rospy.Subscriber('/'+self.j4+"/command", Float64, self.joint4CommandCb)
-			self.joint_5_command = rospy.Subscriber('/'+self.j5+"/command", Float64, self.joint5CommandCb)
-			self.joint_6_command = rospy.Subscriber('/'+self.j6+"/command", Float64, self.joint6CommandCb)
-			"""
 			
 			self.joint_command = rospy.Subscriber('~joint_command', JointState, self.jointCommandCb)
 			
@@ -104,6 +103,45 @@ class PhantomXReactor:
 		for i in range(len(msg.name)):
 			#print 'Joint %s to %lf'%(msg.name[i], msg.position[i])
 			self.setJointPosition(msg.name[i], msg.position[i])
+		
+	def joint1CommandCb(self, msg):
+		"""
+			Receives joint 1 command and send it to the controller
+		"""	
+		self.setJointPosition(self.j1, msg.data)
+		
+	def joint2CommandCb(self, msg):
+		"""
+			Receives joint 2 command and send it to the controller
+		"""	
+		self.setJointPosition(self.j2, msg.data)
+	
+	def joint3CommandCb(self, msg):
+		"""
+			Receives joint 3 command and send it to the controller
+		"""	
+		self.setJointPosition(self.j3, msg.data)
+		
+	
+	def joint4CommandCb(self, msg):
+		"""
+			Receives joint 4 command and send it to the controller
+		"""	
+		self.setJointPosition(self.j4, msg.data)
+		
+	
+	def joint5CommandCb(self, msg):
+		"""
+			Receives joint 5 command and send it to the controller
+		"""	
+		self.setJointPosition(self.j5, msg.data)
+		
+	
+	def joint6CommandCb(self, msg):
+		"""
+			Receives joint 6 command and send it to the controller
+		"""	
+		self.setJointPosition(self.j6, msg.data)
 		
 
 	def controlLoop(self):
