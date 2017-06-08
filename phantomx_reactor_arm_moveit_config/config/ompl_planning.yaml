@@ -65,7 +65,7 @@ arm:
     - TRRTkConfigDefault
     - PRMkConfigDefault
     - PRMstarkConfigDefault
-  projection_evaluator: joints(shoulder_yaw,shoulder_pitch)
+  projection_evaluator: joints(shoulder_yaw_joint,shoulder_pitch_joint)
   longest_valid_segment_fraction: 0.05
 gripper:
   planner_configs:
@@ -80,5 +80,5 @@ gripper:
     - TRRTkConfigDefault
     - PRMkConfigDefault
     - PRMstarkConfigDefault
-  projection_evaluator: joints(gripper_joint,gripper_joint_left)
+  projection_evaluator: joints(gripper_left_joint,gripper_right_joint)
   longest_valid_segment_fraction: 0.05

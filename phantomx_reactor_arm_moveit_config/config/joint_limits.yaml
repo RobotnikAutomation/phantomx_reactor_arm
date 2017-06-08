@@ -2,37 +2,37 @@
 # Specific joint properties can be changed with the keys [max_position, min_position, max_velocity, max_acceleration]
 # Joint limits can be turned off with [has_velocity_limits, has_acceleration_limits]
 joint_limits:
-  elbow_pitch:
+  elbow_pitch_joint:
     has_velocity_limits: true
     max_velocity: 6.178465545
     has_acceleration_limits: false
     max_acceleration: 0
-  gripper_joint:
+  gripper_left_joint:
     has_velocity_limits: true
     max_velocity: 6.178465545
     has_acceleration_limits: false
     max_acceleration: 0
-  gripper_joint_left:
+  gripper_right_joint:
     has_velocity_limits: true
     max_velocity: 6.178465545
     has_acceleration_limits: false
     max_acceleration: 0
-  shoulder_pitch:
+  shoulder_pitch_joint:
     has_velocity_limits: true
     max_velocity: 6.178465545
     has_acceleration_limits: false
     max_acceleration: 0
-  shoulder_yaw:
+  shoulder_yaw_joint:
     has_velocity_limits: true
     max_velocity: 6.178465545
     has_acceleration_limits: false
     max_acceleration: 0
-  wrist_pitch:
+  wrist_pitch_joint:
     has_velocity_limits: true
     max_velocity: 6.178465545
     has_acceleration_limits: false
     max_acceleration: 0
-  wrist_roll:
+  wrist_roll_joint:
     has_velocity_limits: true
     max_velocity: 6.178465545
     has_acceleration_limits: false

@@ -4,15 +4,15 @@ controller_list:
     type: FollowJointTrajectory
     default: true
     joints:
-      - shoulder_yaw
-      - shoulder_pitch
-      - elbow_pitch
-      - wrist_pitch
-      - wrist_roll
+      - shoulder_yaw_joint
+      - shoulder_pitch_joint
+      - elbow_pitch_joint
+      - wrist_pitch_joint
+      - wrist_roll_joint
   - name: grip_controller
     action_ns: gripper_action
     type: GripperCommand
     default: true
     joints:
-      - gripper_joint 
+      - gripper_revolute_joint 
 

@@ -1,10 +1,10 @@
 moveit_setup_assistant_config:
   URDF:
     package: phantomx_reactor_arm_description
-    relative_path: urdf/phantomx_reactor_wrist_gripper.urdf.xacro
+    relative_path: robots/phantomx_reactor_arm_wrist.urdf.xacro
   SRDF:
-    relative_path: config/reactor_description.srdf
+    relative_path: config/phantomx_reactor_arm.srdf
   CONFIG:
     author_name: Roman Navarro
     author_email: rnavarro@robotnik.es
-    generated_timestamp: 1496742375
+    generated_timestamp: 1496844544
