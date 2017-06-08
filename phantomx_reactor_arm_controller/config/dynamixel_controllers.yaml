@@ -1,22 +1,22 @@
-joints: ['shoulder_yaw', 'shoulder_pitch', 'elbow_pitch', 'wrist_pitch', 'wrist_roll', 'gripper_joint']
-shoulder_yaw:
+joints: ['shoulder_yaw_joint', 'shoulder_pitch_joint', 'elbow_pitch_joint', 'wrist_pitch_joint', 'wrist_roll_joint', 'gripper_revolute_joint']
+shoulder_yaw_joint:
   controller:
     package: dynamixel_controllers
     module: joint_position_controller
     type: JointPositionController
-  joint_name: shoulder_yaw
+  joint_name: shoulder_yaw_joint
   joint_speed: 1.5
   motor:
     id: 1
     init: 512
     min: 0
     max: 1023
-shoulder_pitch:
+shoulder_pitch_joint:
   controller:
     package: dynamixel_controllers
     module: joint_position_controller_dual_motor
     type: JointPositionControllerDual
-  joint_name: shoulder_pitch
+  joint_name: shoulder_pitch_joint
   joint_speed: 1.0
   motor_master:
     id: 2
@@ -25,12 +25,12 @@ shoulder_pitch:
     max: 800
   motor_slave:
     id: 3
-elbow_pitch:
+elbow_pitch_joint:
   controller:
     package: dynamixel_controllers
     module: joint_position_controller_dual_motor
     type: JointPositionControllerDual
-  joint_name: elbow_pitch
+  joint_name: elbow_pitch_joint
   joint_speed: 1.0
   motor_master:
     id: 5
@@ -39,12 +39,12 @@ elbow_pitch:
     max: 800
   motor_slave:
     id: 4
-wrist_pitch:
+wrist_pitch_joint:
   controller:
     package: dynamixel_controllers
     module: joint_position_controller
     type: JointPositionController
-  joint_name: wrist_pitch
+  joint_name: wrist_pitch_joint
   joint_speed: 1.5
   reverse: true
   motor:
@@ -52,24 +52,24 @@ wrist_pitch:
     init: 512
     min: 768
     max: 256
-wrist_roll:
+wrist_roll_joint:
   controller:
     package: dynamixel_controllers
     module: joint_position_controller
     type: JointPositionController
-  joint_name: wrist_roll
+  joint_name: wrist_roll_joint
   joint_speed: 1.5
   motor:
     id: 7
     init: 512
     min: 256
     max: 768
-gripper_joint:
+gripper_revolute_joint:
   controller:
     package: dynamixel_controllers
     module: joint_position_controller
     type: JointPositionController
-  joint_name: gripper_joint
+  joint_name: gripper_revolute_joint
   joint_speed: 1.5
   motor:
     id: 8

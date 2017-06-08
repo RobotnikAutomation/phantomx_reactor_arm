@@ -14,28 +14,28 @@
 			args="--manager=dxl_manager
 				--port=arbotix_port
 				--type=simple
-				gripper_joint
-				wrist_roll
-				wrist_pitch
-				elbow_pitch
-				shoulder_pitch
-				shoulder_yaw"
+				gripper_revolute_joint
+				wrist_roll_joint
+				wrist_pitch_joint
+				elbow_pitch_joint
+				shoulder_pitch_joint
+				shoulder_yaw_joint"
 			output="screen"/>
 
 	<node name="dynamixel_controller_spawner2" pkg="dynamixel_controllers" type="controller_spawner.py"
 			args="--manager=dxl_manager
 				--type=meta
 				arm_controller
-				wrist_roll
-				wrist_pitch
-				elbow_pitch
-				shoulder_pitch
-				shoulder_yaw"
+				wrist_roll_joint
+				wrist_pitch_joint
+				elbow_pitch_joint
+				shoulder_pitch_joint
+				shoulder_yaw_joint"
 			output="screen"/>
 
 	<node name="grip_controller" pkg="arbotix_controllers" type="gripper_controller" output="screen" >
 		<param name="model" value="parallel"/>
-		<param name="joint" value="gripper_joint"/>
+		<param name="joint" value="gripper_revolute_joint"/>
 	</node>
 
 	<!-- Start the Dynamixel Joint States Publisher -->
@@ -43,7 +43,10 @@
 		<param name="rate" value="15"/>
 	</node>
 
-
+	<!-- Start the node to publish and command the parallel gripper -->
+	<node name="phantomx_reactor_parallel_gripper" pkg="phantomx_reactor_arm_controller" type="phantomx_reactor_gripper.py" output="screen" >
+		<param name="rate" value="15"/>
+	</node>
  
 </launch>
 
