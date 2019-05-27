@@ -43,7 +43,7 @@ In order to work with ROS it is necessary to upload the firmware into the Arboti
 
 clone the repo into your workspace and compile it.
 ```
-git clone https://github.com/RobotnikAutomation/widowx_reactor_arm.git
+git clone https://github.com/RobotnikAutomation/phantomx_reactor_arm.git
 ```
 ### Creating the udev rule for the device
 
